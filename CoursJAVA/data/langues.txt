@@ -1,0 +1,31 @@
+//
+ScoreUn;FR=Un;EN=One
+ScoreDeux;FR=Deux;EN=Two
+ScoreTrois;FR=Trois;EN=Three
+ScoreQuatre;FR=Quatre;EN=Four
+ScoreCinq;FR=Cinq;EN=Five
+ScoreSix;FR=Six;EN=Six
+//
+ScoreBrelan;FR=Brelan;EN=Brelan
+ScoreFull;FR=Full;EN=Full
+ScoreCarre;FR=Carré;EN=Four
+ScorePSuite;FR=Petite suite;EN=Straight
+ScoreGSuite;FR=Grande suite;EN=High straight
+ScoreYahtzee;FR=Yahtzee;EN=Yahtzee
+ScoreChance;FR=Chance;EN=Luck
+//
+ScoreScore;FR=G R I L L E;EN=G R I D
+ScoreSTotal1;FR=Sous total;EN=Subtotal
+ScoreSTotal2;FR=Sous total;EN=Subtotal
+ScoreBonus;FR=Bonus;EN=Bonus
+ScoreTotal;FR=Total;EN=Total
+//
+BoutonCommencer;FR=Commencer;EN=Start
+BoutonLancer;FR=Lancer;EN=Roll
+//
+MenuLangue;FR=Langue;EN=Language
+MenuJeu;FR=Jeu;EN=Game
+MenuJouer;FR=Jouer;EN=New game
+MenuScores;FR=Scores;EN=Scores
+MenuAide;FR=Aide;EN=Help
+MenuQuitter;FR=Quitter;EN=Exit
