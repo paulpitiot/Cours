@@ -1,12 +1,25 @@
 package cours;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class EssaiBinarySearch {
 
-	public static void RemplirTableauAléatoire(int[] tab, int M) {
+	public static void remplirTableauAléatoire(int[] tab, int M) {
 		for (int i = 0; i < tab.length; i++) {
+			// version avec Math.random()
 			tab[i] = (int) (Math.random() * M + 1);
+			// autre manière de tirer un nombre aléatoire : la classe Random
+			
+		}
+	}
+	
+	public static void remplirTableauAléatoireUtilisantRandom(int[] tab, int M) {
+		// une autre manière de tirer un nombre aléatoire : la classe Random
+		Random generateurNombre = new Random();
+		for (int i = 0; i < tab.length; i++) {
+			tab[i] = (int) (generateurNombre.nextInt() * M + 1);
+			
 		}
 	}
 
@@ -61,90 +74,77 @@ public class EssaiBinarySearch {
 			tab[j] = elem;
 		}
 	}
+	
+	public static void testGenerateurPourRemplirTableauAléatoire() {
+		int tailleTableau = 1000000;
+		System.out.println("---------------------\n");
+		System.out.println("génération d'un tableau de " + tailleTableau + " cases avec Math.random\n");
+		int [] tab = new int[tailleTableau];
+		long startTime = System.nanoTime();
+		remplirTableauAléatoire(tab, tailleTableau);
+		long estimatedTime = System.nanoTime() - startTime;
+		System.out.println("Temps nécessaire : " + estimatedTime / 1000000.0 + " ms");
+		
+		System.out.println("---------------------\n");
+		System.out.println("génération d'un tableau de " + tailleTableau + " cases avec un générateur de la classe  Random\n");
+		tab = new int[tailleTableau];
+		startTime = System.nanoTime();
+		remplirTableauAléatoireUtilisantRandom(tab, tailleTableau);
+		estimatedTime = System.nanoTime() - startTime;
+		System.out.println("Temps nécessaire : " + estimatedTime / 1000000.0 + " ms");
+		
+		
+		
+		
+	}
+	public static void comparatifSequentielDichotomie( int tailleTableau){
 
-	public static void main(String[] args) {
-		// System.out.println("Saisir taille tableau (N) ");
-		// for (int i = 1 ; i <= 1000000; i *=1000){
-		// if (i==1)
-		// i=10;
-		// int N = i;
-		//
-		// int [] tab = new int[N];
-		// int [] tab_valeurs_recherchées = new int[N];
-		//
-		// RemplirTableauAléatoire(tab, N);
-		// RemplirTableauAléatoire(tab_valeurs_recherchées, N);
-		//
-		// //System.out.println("Tableau : " + Arrays.toString(tab));
-		// //System.out.println("Valeur recherchée : " + valeurRecherchée);
-		// System.out.println("Taille tableau :" + i);
-		// System.out.println("");
-		// System.out.println("Recherche séquentielle");
-		// long startTime = System.nanoTime();
-		// int cpt = 0;
-		// for(int val : tab_valeurs_recherchées)
-		// if (RechercheSequentielle(tab, val)>=0 )
-		// cpt++;
-		// long estimatedTime = System.nanoTime() - startTime;
-		// System.out.println("nb val trouvees : " + cpt);
-		// System.out.println("Temps nécessaire : " + estimatedTime/1000000.0 +"
-		// ms" );
-		//
-		// System.out.println("Recherche dichotomique");
-		// startTime = System.nanoTime();
-		// Arrays.sort(tab);
-		// estimatedTime = System.nanoTime() - startTime;
-		// System.out.println("Temps nécessaire pour le tri: " +
-		// estimatedTime/1000000.0 +" ms" );
-		// cpt = 0;
-		// for(int val : tab_valeurs_recherchées)
-		// if (Arrays.binarySearch(tab, val)>=0 )
-		// cpt++;
-		// estimatedTime = System.nanoTime() - startTime;
-		// System.out.println("nb val trouvees : " + cpt);
-		// System.out.println("Temps nécessaire : " + estimatedTime/1000000.0 +"
-		// ms" );
-		// if (i==10)
-		// i=1;
-		// }
-		int i = 10;
-		while (i <= 100000) {
-			int N = i;
+		
+		int[] tab = new int[tailleTableau];
+		int[] tab_valeurs_recherchées = new int[tailleTableau];
 
-			int[] tab = new int[N];
-			RemplirTableauAléatoire(tab, N);
+		remplirTableauAléatoire(tab, tailleTableau);
+		remplirTableauAléatoire(tab_valeurs_recherchées, tailleTableau);
 
-			System.out.println("Taille tableau :" + i);
-			System.out.println("");
-			System.out.println("tri sélection");
-			long startTime = System.nanoTime();
-			TriSelection(tab);
-			long estimatedTime = System.nanoTime() - startTime;
-			System.out.println("Temps nécessaire : " + estimatedTime / 1000000.0 + " ms");
+		// System.out.println("Tableau : " + Arrays.toString(tab));
+		// System.out.println("Valeur recherchée : " + valeurRecherchée);
+		System.out.println("---------------------\n");
+		System.out.println("Taille tableau :" + tailleTableau + "\n");
+		System.out.println("Recherche séquentielle");
+		long startTime = System.nanoTime();
+		int cpt = 0;
+		for (int val : tab_valeurs_recherchées)
+			if (RechercheSequentielle(tab, val) >= 0)
+				cpt++;
+		long estimatedTime = System.nanoTime() - startTime;
+		System.out.println("nb val trouvees : " + cpt);
+		System.out.println("Temps nécessaire : " + estimatedTime / 1000000.0 + " ms");
 
-			System.out.println("");
-			System.out.println("tri bulle");
-			startTime = System.nanoTime();
-			TriBulle(tab);
-			estimatedTime = System.nanoTime() - startTime;
-			System.out.println("Temps nécessaire : " + estimatedTime / 1000000.0 + " ms");
-
-			System.out.println("");
-			System.out.println("tri insertion");
-			startTime = System.nanoTime();
-			TriInsertion(tab);
-			estimatedTime = System.nanoTime() - startTime;
-			System.out.println("Temps nécessaire : " + estimatedTime / 1000000.0 + " ms");
-
-			System.out.println("");
-			System.out.println("tri API JAVA");
-			startTime = System.nanoTime();
-			Arrays.sort(tab);
-			estimatedTime = System.nanoTime() - startTime;
-			System.out.println("Temps nécessaire : " + estimatedTime / 1000000.0 + " ms");
-			i *= 100;
-		}
+		System.out.println("Recherche dichotomique");
+		startTime = System.nanoTime();
+		Arrays.sort(tab);
+		estimatedTime = System.nanoTime() - startTime;
+		System.out.println("Temps nécessaire pour le tri: " + estimatedTime / 1000000.0 + " ms");
+		cpt = 0;
+		for (int val : tab_valeurs_recherchées)
+			if (Arrays.binarySearch(tab, val) >= 0)
+				cpt++;
+		estimatedTime = System.nanoTime() - startTime;
+		System.out.println("nb val trouvees : " + cpt);
+		System.out.println("Temps nécessaire : " + estimatedTime / 1000000.0 + " ms");
 
 	}
 
+	public static void main(String[] args) {
+
+		System.out.println("exercice 19 série 4");
+		comparatifSequentielDichotomie(10);
+		comparatifSequentielDichotomie(1000);
+		comparatifSequentielDichotomie(100000);
+		
+		// test perf différents types remplissage
+		
+		testGenerateurPourRemplirTableauAléatoire() ;
+		
+	}
 }
